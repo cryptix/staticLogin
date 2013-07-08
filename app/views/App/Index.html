@@ -6,7 +6,11 @@
     <div class="row">
       <div class="hero-text">
         <h1>It works!</h1>
-        <p></p>
+        <ul>
+          <li>
+            <a href="{{url "App.Register"}}">Register for the Secret Area</a>  
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -19,5 +23,18 @@
     </div>
   </div>
 </div>
+
+<form action="{{url "App.ProcessLogin"}}" method="post">
+  <p class="field">
+    <label for="username">username:</label>
+    <input type="text" name="username" value="{{.flash.username}}"/>
+  </p>
+  <p class="field">
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+  </p>
+
+  <input type="submit" value="login">
+</form>
 
 {{template "footer.html" .}}
