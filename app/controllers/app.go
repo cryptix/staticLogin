@@ -52,6 +52,7 @@ func (c App) RestrictedIndex() revel.Result {
 	if user := c.loggedIn(); user == nil {
 		// send him away if not
 		c.Flash.Error("Sorry - You don't have access!")
+		c.Response.Status = 401
 		return c.Redirect(App.Index)
 	} else {
 		return c.Render(user)
