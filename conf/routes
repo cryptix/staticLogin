@@ -10,7 +10,6 @@ GET     /register                               App.Register
 POST    /register                               App.SaveUser
 
 POST    /login                                  App.ProcessLogin
-
 GET     /logout                                 App.Logout
 
 # Ignore favicon requests

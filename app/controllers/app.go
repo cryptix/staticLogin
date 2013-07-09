@@ -47,12 +47,11 @@ func (c App) Register() revel.Result {
 }
 
 // restricted area
-func (c App) RestrictedIndex() revel.Result {
+func (c App) RestrictedPage() revel.Result {
 	// check if user is logged in
 	if user := c.loggedIn(); user == nil {
 		// send him away if not
-		c.Flash.Error("Sorry - You don't have access!")
-		c.Response.Status = 401
+		c.Flash.Error("Sorry - You dont have access!")
 		return c.Redirect(App.Index)
 	} else {
 		return c.Render(user)
@@ -69,7 +68,7 @@ func (c App) ProcessLogin(username, password string) revel.Result {
 			revel.INFO.Printf("Password matched for user %s\n", username)
 			c.Session["user"] = username
 			c.Flash.Success("Welcome, " + username)
-			return c.Redirect(App.RestrictedIndex)
+			return c.Redirect(App.RestrictedPage)
 		}
 	}
 
@@ -95,7 +94,7 @@ func (c App) SaveUser(user models.User, verifyPassword string) revel.Result {
 
 	c.Session["user"] = user.Username
 	c.Flash.Success("Welcome, " + user.Name)
-	return c.Redirect(App.RestrictedIndex)
+	return c.Redirect(App.RestrictedPage)
 }
 
 // destroy session

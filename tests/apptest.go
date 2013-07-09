@@ -19,9 +19,10 @@ func (t AppTest) TestThatIndexPageWorks() {
 	t.AssertContentType("text/html")
 }
 
-func (t AppTest) TestThatRestrictedPageDoesntWork() {
-	t.Get("/App/RestrictedIndex")
-	t.AssertStatus(401)
+func (t AppTest) TestThatRestrictedPageNeedsLogin() {
+	t.Get("/App/RestrictedPage")
+	t.AssertOk()
+	t.AssertContains("Sorry - You dont have access!")
 }
 
 func (t AppTest) TestCorrectCredentials() {
@@ -42,7 +43,7 @@ func (t AppTest) TestIncorrectCredentials() {
 	t.AssertContains("Login failed")
 }
 
-func (t AppTest) TestThatRegisterPageWorks() {
+func (t AppTest) TestThatRegisterPageIsServed() {
 	t.Get("/register")
 	t.AssertOk()
 	t.AssertContentType("text/html")
